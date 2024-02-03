@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './App.css'
-import events from './assets/events.json'
+import { events } from './assets/events'
 import Logo from './assets/logo.svg'
 import CalendarView from './components/CalendarView'
 

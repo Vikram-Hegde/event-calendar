@@ -1,4 +1,4 @@
-import { CSSProperties, Fragment, useState } from 'react'
+import { CSSProperties, Fragment } from 'react'
 import categorizeEvents from '../utils/categorizeEvents'
 import generateHours from '../utils/generateHours'
 
@@ -9,13 +9,7 @@ export default function CalendarView({ events }: { events: Event[] }) {
 	const maxEventsInAnHour = Math.max(
 		...Object.values(categorizedEvents).map((events) => events.length)
 	)
-
-	const [maxColumns, setMaxColumns] = useState(maxEventsInAnHour)
-	const gridColumnSpan = maxColumns % 2 === 1 ? 2 : 1
-
-	console.log(maxEventsInAnHour)
-
-	// console.log(categorizedEvents)
+	const gridColumnSpan = maxEventsInAnHour % 2 === 1 ? 2 : 1
 
 	return (
 		<section className="calendar">
@@ -38,10 +32,39 @@ export default function CalendarView({ events }: { events: Event[] }) {
 				className="calendar__events"
 				style={
 					{
-						gridTemplateColumns: `repeat(${maxColumns * gridColumnSpan}, 1fr)`,
+						gridTemplateColumns: `repeat(${
+							maxEventsInAnHour * gridColumnSpan
+						}, 1fr)`,
 					} as CSSProperties
 				}
-			></div>
+			>
+				{Object.keys(categorizedEvents).map((key) => {
+					const event = categorizedEvents[key]
+					return event.map((e) => {
+						const gridColumn =
+							event.length === 1
+								? `span ${maxEventsInAnHour * gridColumnSpan}`
+								: `span ${(maxEventsInAnHour / event.length) * gridColumnSpan}`
+						return (
+							<div
+								key={e.title + e.start}
+								className="calendar__event"
+								style={
+									{
+										gridRow: `${e.start + 10} / span ${e.end - e.start + 5}`,
+										backgroundColor: `${
+											Math.random() * 5 < 2.5 ? 'green' : 'blue'
+										}`,
+										gridColumn: `${gridColumn}`,
+									} as React.CSSProperties
+								}
+							>
+								<div className="calendar__event-title">{e.title}</div>
+							</div>
+						)
+					})
+				})}
+			</div>
 		</section>
 	)
 }
