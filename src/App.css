@@ -7,3 +7,15 @@
 		padding-inline: max(2rem, 50% - 1100px / 2);
 	}
 }
+
+.calendar {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	overflow-y: auto;
+	max-block-size: 720px;
+	width: min(100%, 620px);
+}
+
+.calendar__hour:last-child {
+	display: none;
+}
