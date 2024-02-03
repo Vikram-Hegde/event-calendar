@@ -4,7 +4,7 @@ import generateHours from '../utils/generateHours'
 
 const hours = generateHours(9, 12)
 
-export default function CalendarView({ events }) {
+export default function CalendarView({ events }: { events: Event[] }) {
 	const categorizedEvents = categorizeEvents(events)
 
 	console.log(categorizedEvents)

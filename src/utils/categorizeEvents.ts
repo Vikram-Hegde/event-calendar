@@ -1,13 +1,3 @@
-type Event = {
-	start: number
-	end: number
-	title: string
-}
-
-type CategorizedEvents = {
-	[key: string]: Event[]
-}
-
 /**
  * Based on the start time of the event, it categorizes the events into different time slots
  * For example, if an event starts at 9:30 AM to 10:30 AM, it will be categorized under 9AM
