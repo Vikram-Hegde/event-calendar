@@ -18,7 +18,7 @@ html {
 	grid-template-columns: auto 1fr;
 	overflow: auto;
 	width: min(100%, 620px);
-	padding-block: 2rem;
+	margin-block: 2rem;
 
 	.calendar__hours {
 		block-size: 780px;
@@ -26,6 +26,12 @@ html {
 		grid-template-rows: repeat(24, 1fr);
 		align-items: center;
 		justify-items: end;
+	}
+
+	.calendar__events {
+		display: grid;
+		padding: 10px;
+		grid-template-rows: repeat(780, 1px);
 	}
 }
 

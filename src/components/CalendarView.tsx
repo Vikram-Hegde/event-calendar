@@ -1,4 +1,4 @@
-import { Fragment } from 'react'
+import { CSSProperties, Fragment, useState } from 'react'
 import categorizeEvents from '../utils/categorizeEvents'
 import generateHours from '../utils/generateHours'
 
@@ -6,8 +6,16 @@ const hours = generateHours(9, 12)
 
 export default function CalendarView({ events }: { events: Event[] }) {
 	const categorizedEvents = categorizeEvents(events)
+	const maxEventsInAnHour = Math.max(
+		...Object.values(categorizedEvents).map((events) => events.length)
+	)
 
-	console.log(categorizedEvents)
+	const [maxColumns, setMaxColumns] = useState(maxEventsInAnHour)
+	const gridColumnSpan = maxColumns % 2 === 1 ? 2 : 1
+
+	console.log(maxEventsInAnHour)
+
+	// console.log(categorizedEvents)
 
 	return (
 		<section className="calendar">
@@ -26,6 +34,14 @@ export default function CalendarView({ events }: { events: Event[] }) {
 					</Fragment>
 				))}
 			</div>
+			<div
+				className="calendar__events"
+				style={
+					{
+						gridTemplateColumns: `repeat(${maxColumns * gridColumnSpan}, 1fr)`,
+					} as CSSProperties
+				}
+			></div>
 		</section>
 	)
 }
