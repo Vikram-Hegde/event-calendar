@@ -1,9 +1,10 @@
 #root {
+	--gap: 0.75rem;
 	display: grid;
 	grid-template-rows: auto 1fr;
 
 	& > * {
-		padding-inline: max(2rem, 50% - 1100px / 2);
+		padding-inline: max(2rem, 50% - (620px + var(--gap)) / 2);
 	}
 }
 
@@ -17,7 +18,7 @@ html {
 	display: grid;
 	grid-template-columns: auto 1fr;
 	overflow: auto;
-	width: min(100%, 620px);
+	width: min(100%, calc(620px + var(--gap)));
 	margin-block: 2rem;
 
 	.calendar__hours {
@@ -30,7 +31,7 @@ html {
 
 	.calendar__events {
 		display: grid;
-		padding: 10px;
+		padding-inline: 10px;
 		grid-template-rows: repeat(780, 1px);
 	}
 }

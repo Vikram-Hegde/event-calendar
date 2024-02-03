@@ -1,4 +1,4 @@
-export const events = [
+export const events: EventProp[] = [
 	{
 		start: 60,
 		end: 90,

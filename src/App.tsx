@@ -5,7 +5,7 @@ import Logo from './assets/logo.svg'
 import CalendarView from './components/CalendarView'
 
 function App() {
-	const [eventsList, setEventsList] = useState<Event[]>(events as Event[])
+	const [eventsList, setEventsList] = useState(events as EventProp[])
 	return (
 		<>
 			<header className="bg-slate-100 py-5">

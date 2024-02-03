@@ -8,8 +8,8 @@
  * @param beginWith - The time to start with, default is 9
  * @returns Object with keys as time of the day and values as events that occur at that time
  */
-export default function categorizeEvents(events: Event[], beginWith?: number) {
-	return events.reduce<CategorizedEvents>((acc, event) => {
+export default function categorizeEvents(events: EventProp[], beginWith?: number) {
+	return events.reduce<CategorizedEventsProp>((acc, event) => {
 		const startHour = (beginWith ?? 9) + Math.floor(event.start / 60)
 		const startIn12HourFormat = startHour % 12 ? startHour % 12 : 12
 		const timeOfTheDay = startHour < 12 ? 'AM' : 'PM'

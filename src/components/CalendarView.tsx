@@ -4,7 +4,7 @@ import generateHours from '../utils/generateHours'
 
 const hours = generateHours(9, 12)
 
-export default function CalendarView({ events }: { events: Event[] }) {
+export default function CalendarView({ events }: { events: EventProp[] }) {
 	const categorizedEvents = categorizeEvents(events)
 	const maxEventsInAnHour = Math.max(
 		...Object.values(categorizedEvents).map((events) => events.length)
@@ -12,7 +12,7 @@ export default function CalendarView({ events }: { events: Event[] }) {
 	const gridColumnSpan = maxEventsInAnHour % 2 === 1 ? 2 : 1
 
 	return (
-		<section className="calendar">
+		<section className="calendar | p-[1px] gap-[var(--gap)]">
 			<div className="calendar__hours | text-gray-600">
 				{hours.map(({ hour, timeOfTheDay }, index) => (
 					<Fragment key={index}>
@@ -29,7 +29,7 @@ export default function CalendarView({ events }: { events: Event[] }) {
 				))}
 			</div>
 			<div
-				className="calendar__events"
+				className="calendar__events | bg-gray-100 outline outline-gray-200 outline-1 rounded-md"
 				style={
 					{
 						gridTemplateColumns: `repeat(${
@@ -51,7 +51,7 @@ export default function CalendarView({ events }: { events: Event[] }) {
 								className="calendar__event"
 								style={
 									{
-										gridRow: `${e.start + 10} / span ${e.end - e.start + 5}`,
+										gridRow: `${e.start + 20} / span ${e.end - e.start + 5}`,
 										backgroundColor: `${
 											Math.random() * 5 < 2.5 ? 'green' : 'blue'
 										}`,
