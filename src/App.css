@@ -18,13 +18,11 @@ html {
 	grid-template-columns: auto 1fr;
 	overflow: auto;
 	width: min(100%, 620px);
-	max-block-size: 100%;
 	padding-block: 2rem;
 
 	.calendar__hours {
-		block-size: 720px;
+		block-size: 780px;
 		display: grid;
-		grid-template-columns: 1fr;
 		grid-template-rows: repeat(24, 1fr);
 		align-items: center;
 		justify-items: end;
