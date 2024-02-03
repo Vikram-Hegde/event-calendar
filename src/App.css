@@ -1,0 +1,9 @@
+#root {
+	display: grid;
+	grid-template-rows: auto 1fr;
+	min-block-size: 100dvh;
+
+	& > * {
+		padding-inline: max(2rem, 50% - 1100px / 2);
+	}
+}
