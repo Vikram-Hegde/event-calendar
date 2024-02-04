@@ -1,10 +1,11 @@
 #root {
 	--gap: 0.75rem;
+	--width: calc(620px + var(--gap));
 	display: grid;
 	grid-template-rows: auto 1fr;
 
 	& > * {
-		padding-inline: max(2rem, 50% - (620px + var(--gap)) / 2);
+		padding-inline: max(2rem, 50% - var(--width) / 2);
 	}
 }
 
@@ -18,7 +19,7 @@ html {
 	display: grid;
 	grid-template-columns: auto 1fr;
 	overflow: auto;
-	width: min(100%, calc(620px + var(--gap)));
+	width: min(100%, var(--width));
 	margin-block: 2rem;
 
 	.calendar__hours {
@@ -29,6 +30,14 @@ html {
 		justify-items: end;
 	}
 
+	.calendar__hour {
+		line-height: 1cap;
+
+		&:last-child {
+			display: none;
+		}
+	}
+
 	.calendar__events {
 		display: grid;
 		padding-inline: 10px;
@@ -36,6 +45,17 @@ html {
 	}
 }
 
-.calendar__hour:last-child {
-	display: none;
+.calendar__event {
+	overflow: hidden;
+	container: event / size;
+
+	.calendar__event-subtitle {
+		display: block;
+	}
+}
+
+@container event(height <= 40px) {
+	.calendar__event-subtitle {
+		display: none;
+	}
 }
