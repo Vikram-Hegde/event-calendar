@@ -14,7 +14,7 @@ export default function CalendarView({ events }: { events: EventProp[] }) {
 			calendarEvents.current &&
 			calendarEvents.current.scrollWidth !== calendarEventsWidth
 		) {
-			setCalendarEventsWidth(calendarEvents.current.scrollWidth - 20)
+			setCalendarEventsWidth(calendarEvents.current.scrollWidth)
 		}
 	}, [events])
 
@@ -39,43 +39,45 @@ export default function CalendarView({ events }: { events: EventProp[] }) {
 					</Fragment>
 				))}
 			</div>
-			<div
-				className="calendar__events | relative bg-gray-100 outline outline-gray-200 outline-1 rounded-md"
-				ref={calendarEvents}
-			>
-				{Object.keys(categorizedEvents).map((key) => {
-					const event = categorizedEvents[key]
-					return event.map((e, i) => {
-						return (
-							<div
-								key={e.title + e.start + Math.random() * 100}
-								className="calendar__event | absolute grid gap-1.5 content-start bg-white outline outline-1 outline-gray-200 p-1.5 border-l-2 border-blue-950 rounded-e"
-								style={
-									{
-										top: `${29 * (e.start / 60) * 2 + 14}px`,
-										height: `${e.end - e.start}px`,
-										width: `max(calc(${calendarEventsWidth}px / ${event.length}), 170px)`,
-										left:
-											calendarEventsWidth / event.length > 170
-												? `calc(${calendarEventsWidth}px / ${event.length} * ${i} + 10px)`
-												: `calc(170px * ${i} + 10px`,
-										// width: `calc(${calendarEventsWidth}px / ${event.length})`,
-										// left: `calc(${calendarEventsWidth}px / ${event.length} * ${i} + 10px)`,
-									} as CSSProperties
-								}
-							>
-								<div className="calendar__event-title | leading-[1cap] text-sm">
-									{e.title}
-								</div>
-								{e.end - e.start > 45 && (
-									<div className="calendar__event-subtitle | text-xs text-gray-400">
-										Sample location
+			<div className="calendar__events | bg-gray-100 outline outline-gray-200 outline-1 rounded-md">
+				<div
+					className="calendar__events-wrapper | relative h-full overflow-y-auto"
+					ref={calendarEvents}
+				>
+					{Object.keys(categorizedEvents).map((key) => {
+						const event = categorizedEvents[key]
+						return event.map((e, i) => {
+							return (
+								<div
+									key={e.title + e.start + Math.random() * 100}
+									className="calendar__event | absolute grid gap-1.5 content-start bg-white outline outline-1 outline-gray-200 p-1.5 border-l-2 border-blue-950 rounded-e"
+									style={
+										{
+											top: `${29 * (e.start / 60) * 2 + 14}px`,
+											height: `${e.end - e.start}px`,
+											width: `max(calc(${calendarEventsWidth}px / ${event.length}), 170px)`,
+											left:
+												calendarEventsWidth / event.length > 170
+													? `calc(${calendarEventsWidth}px / ${event.length} * ${i} + 10px)`
+													: `calc(170px * ${i} + 10px`,
+											// width: `calc(${calendarEventsWidth}px / ${event.length})`,
+											// left: `calc(${calendarEventsWidth}px / ${event.length} * ${i} + 10px)`,
+										} as CSSProperties
+									}
+								>
+									<div className="calendar__event-title | leading-[1cap] text-sm">
+										{e.title}
 									</div>
-								)}
-							</div>
-						)
-					})
-				})}
+									{e.end - e.start > 45 && (
+										<div className="calendar__event-subtitle | text-xs text-gray-400">
+											Sample location
+										</div>
+									)}
+								</div>
+							)
+						})
+					})}
+				</div>
 			</div>
 		</section>
 	)

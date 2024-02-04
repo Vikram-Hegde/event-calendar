@@ -39,8 +39,8 @@ html {
 	}
 
 	.calendar__events {
-		overflow-x: auto;
-		padding: 10px;
+		padding-inline: 10px;
+		overflow-y: auto;
 	}
 }
 
