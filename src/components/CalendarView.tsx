@@ -13,9 +13,9 @@ export default function CalendarView({ events }: { events: EventProp[] }) {
 		if (
 			calendarEvents.current &&
 			calendarEvents.current.scrollWidth !== calendarEventsWidth
-		) {
+		)
 			setCalendarEventsWidth(calendarEvents.current.scrollWidth)
-		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [events])
 
 	console.log(calendarEventsWidth)
@@ -50,7 +50,7 @@ export default function CalendarView({ events }: { events: EventProp[] }) {
 							return (
 								<div
 									key={e.title + e.start + Math.random() * 100}
-									className="calendar__event | absolute grid gap-1.5 content-start bg-white outline outline-1 outline-gray-200 p-1.5 border-l-2 border-blue-950 rounded-e"
+									className="calendar__event | absolute grid gap-1.5 content-start bg-white p-1.5 border border-solid border-gray-200 border-l-2 border-l-blue-950 rounded-e"
 									style={
 										{
 											top: `${29 * (e.start / 60) * 2 + 14}px`,
@@ -58,8 +58,8 @@ export default function CalendarView({ events }: { events: EventProp[] }) {
 											width: `max(calc(${calendarEventsWidth}px / ${event.length}), 170px)`,
 											left:
 												calendarEventsWidth / event.length > 170
-													? `calc(${calendarEventsWidth}px / ${event.length} * ${i} + 10px)`
-													: `calc(170px * ${i} + 10px`,
+													? `calc(${calendarEventsWidth}px / ${event.length} * ${i})`
+													: `calc(170px * ${i}`,
 											// width: `calc(${calendarEventsWidth}px / ${event.length})`,
 											// left: `calc(${calendarEventsWidth}px / ${event.length} * ${i} + 10px)`,
 										} as CSSProperties

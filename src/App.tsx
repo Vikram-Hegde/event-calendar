@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import { events } from './assets/events'
-import Logo from './assets/logo.svg'
+import Logo from './assets/icons/logo.svg'
 import CalendarView from './components/CalendarView'
 
 function App() {
@@ -31,6 +31,7 @@ function App() {
 			>
 				Add event
 			</button>
+			<button onClick={() => setEventsList(events)}>Update</button>
 		</>
 	)
 }

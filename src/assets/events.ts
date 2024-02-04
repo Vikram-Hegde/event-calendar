@@ -1,3 +1,7 @@
+/**
+ * When this file is modified, the changes are not reflected in the browser.
+ * Save the file and click on Update button in the browser to see the changes.
+ */
 export const events: EventProp[] = [
 	{
 		start: 60,
