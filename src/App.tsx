@@ -4,10 +4,10 @@ import { events } from './assets/events'
 import Logo from './assets/icons/logo.svg'
 import CalendarView from './components/CalendarView'
 
+let counter = 1
+
 function App() {
 	const [eventsList, setEventsList] = useState(events as EventProp[])
-
-	const sortedEventsList = eventsList.sort((a, b) => a.start - b.start)
 
 	return (
 		<>
@@ -15,16 +15,18 @@ function App() {
 				<img src={Logo} alt="logo" />
 			</header>
 			<main>
-				<CalendarView events={sortedEventsList} />
+				<CalendarView events={eventsList} />
 			</main>
 			<button
 				onClick={() => {
 					setEventsList([
 						...eventsList,
 						{
-							start: 300,
-							end: 360,
-							title: 'New event',
+							start: Math.floor(Math.random() * 600),
+							get end() {
+								return this.start + Math.floor(Math.random() * 120)
+							},
+							title: `New event ${counter++}`,
 						},
 					])
 				}}

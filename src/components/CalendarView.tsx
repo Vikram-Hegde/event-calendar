@@ -5,7 +5,8 @@ import generateHours from '../utils/generateHours'
 const hours = generateHours(9, 12)
 
 export default function CalendarView({ events }: { events: EventProp[] }) {
-	const categorizedEvents = categorizeEvents(events)
+	const sortedEvents = events.sort((a, b) => a.start - b.start)
+	const categorizedEvents = categorizeEvents(sortedEvents)
 	const calendarEvents = useRef<HTMLDivElement>(null)
 	const [calendarEventsWidth, setCalendarEventsWidth] = useState<number>(0)
 
@@ -18,7 +19,7 @@ export default function CalendarView({ events }: { events: EventProp[] }) {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [events])
 
-	console.log(calendarEventsWidth)
+	// console.log(calendarEventsWidth)
 
 	return (
 		<section className="calendar | p-[1px] gap-[var(--gap)]">
@@ -46,29 +47,29 @@ export default function CalendarView({ events }: { events: EventProp[] }) {
 				>
 					{Object.keys(categorizedEvents).map((key) => {
 						const event = categorizedEvents[key]
-						return event.map((e, i) => {
+						return event.map((item, index) => {
 							return (
 								<div
-									key={e.title + e.start + Math.random() * 100}
+									key={item.title + item.start + Math.random() * 100}
 									className="calendar__event | absolute overflow-hidden grid gap-1.5 content-start bg-white p-1.5 border border-solid border-gray-200 border-l-2 border-l-blue-950 rounded-e"
 									style={
 										{
-											top: `${29 * (e.start / 60) * 2 + 14}px`,
-											height: `${e.end - e.start}px`,
+											top: `${29 * (item.start / 60) * 2 + 14}px`,
+											height: `${item.end - item.start}px`,
 											width: `max(calc(${calendarEventsWidth}px / ${event.length}), 170px)`,
 											left:
 												calendarEventsWidth / event.length > 170
-													? `calc(${calendarEventsWidth}px / ${event.length} * ${i})`
-													: `calc(170px * ${i}`,
+													? `calc(${calendarEventsWidth}px / ${event.length} * ${index})`
+													: `calc(170px * ${index}`,
 											// width: `calc(${calendarEventsWidth}px / ${event.length})`,
-											// left: `calc(${calendarEventsWidth}px / ${event.length} * ${i} + 10px)`,
+											// left: `calc(${calendarEventsWidth}px / ${event.length} * ${i})`,
 										} as CSSProperties
 									}
 								>
 									<div className="calendar__event-title | leading-[1cap] text-sm">
-										{e.title}
+										{item.title}
 									</div>
-									{e.end - e.start > 45 && (
+									{item.end - item.start > 45 && (
 										<div className="calendar__event-subtitle | text-xs text-gray-400">
 											Sample location
 										</div>
