@@ -50,7 +50,7 @@ export const events: EventProp[] = [
 		title: 'Meeting with Vikram',
 	},
 	{
-		start: 560,
+		start: 540,
 		end: 650,
 		title: 'Meeting with John',
 	},

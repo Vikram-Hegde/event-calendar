@@ -9,8 +9,6 @@ function App() {
 
 	const sortedEventsList = eventsList.sort((a, b) => a.start - b.start)
 
-	console.log(sortedEventsList)
-
 	return (
 		<>
 			<header className="bg-slate-100 py-5">
@@ -24,8 +22,8 @@ function App() {
 					setEventsList([
 						...eventsList,
 						{
-							start: 30,
-							end: 100,
+							start: 300,
+							end: 360,
 							title: 'New event',
 						},
 					])

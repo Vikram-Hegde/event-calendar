@@ -1,4 +1,4 @@
-import { CSSProperties, Fragment } from 'react'
+import { CSSProperties, Fragment, useEffect, useRef, useState } from 'react'
 import categorizeEvents from '../utils/categorizeEvents'
 import generateHours from '../utils/generateHours'
 
@@ -6,13 +6,19 @@ const hours = generateHours(9, 12)
 
 export default function CalendarView({ events }: { events: EventProp[] }) {
 	const categorizedEvents = categorizeEvents(events)
+	const calendarEvents = useRef<HTMLDivElement>(null)
+	const [calendarEventsWidth, setCalendarEventsWidth] = useState<number>(0)
 
-	const maxEventsInAnHour = Math.max(
-		...Object.values(categorizedEvents).map((events) => events.length)
-	)
-	const gridColumnSpan = maxEventsInAnHour % 2 === 1 ? 2 : 1
+	useEffect(() => {
+		if (
+			calendarEvents.current &&
+			calendarEvents.current.scrollWidth !== calendarEventsWidth
+		) {
+			setCalendarEventsWidth(calendarEvents.current.scrollWidth - 20)
+		}
+	}, [events])
 
-	console.log(maxEventsInAnHour)
+	console.log(calendarEventsWidth)
 
 	return (
 		<section className="calendar | p-[1px] gap-[var(--gap)]">
@@ -34,39 +40,38 @@ export default function CalendarView({ events }: { events: EventProp[] }) {
 				))}
 			</div>
 			<div
-				className="calendar__events | bg-gray-100 outline outline-gray-200 outline-1 rounded-md"
-				style={
-					{
-						gridTemplateColumns: `repeat(${
-							maxEventsInAnHour * gridColumnSpan
-						}, 1fr)`,
-					} as CSSProperties
-				}
+				className="calendar__events | relative bg-gray-100 outline outline-gray-200 outline-1 rounded-md"
+				ref={calendarEvents}
 			>
 				{Object.keys(categorizedEvents).map((key) => {
 					const event = categorizedEvents[key]
-					return event.map((e) => {
-						const gridColumn =
-							event.length === 1
-								? `span ${maxEventsInAnHour * gridColumnSpan}`
-								: `span ${(maxEventsInAnHour / event.length) * gridColumnSpan}`
+					return event.map((e, i) => {
 						return (
 							<div
-								key={e.title + e.start}
-								className="calendar__event | grid gap-1.5 content-start bg-white outline outline-1 outline-gray-200 p-1.5 border-l-2 border-blue-950 rounded-e"
+								key={e.title + e.start + Math.random() * 100}
+								className="calendar__event | absolute grid gap-1.5 content-start bg-white outline outline-1 outline-gray-200 p-1.5 border-l-2 border-blue-950 rounded-e"
 								style={
 									{
-										gridRow: `${e.start + 20} / span ${e.end - e.start + 5}`,
-										gridColumn: `${gridColumn}`,
-									} as React.CSSProperties
+										top: `${e.start}px`,
+										height: `${(e.end - e.start)}px`,
+										width: `max(calc(${calendarEventsWidth}px / ${event.length}), 170px)`,
+										left:
+											calendarEventsWidth / event.length > 170
+												? `calc(${calendarEventsWidth}px / ${event.length} * ${i} + 10px)`
+												: `calc(170px * ${i} + 10px`,
+										// width: `calc(${calendarEventsWidth}px / ${event.length})`,
+										// left: `calc(${calendarEventsWidth}px / ${event.length} * ${i} + 10px)`,
+									} as CSSProperties
 								}
 							>
 								<div className="calendar__event-title | leading-[1cap] text-sm">
 									{e.title}
 								</div>
-								<div className="calendar__event-subtitle | text-xs text-gray-400">
-									Sample location
-								</div>
+								{e.end - e.start > 45 && (
+									<div className="calendar__event-subtitle | text-xs text-gray-400">
+										Sample location
+									</div>
+								)}
 							</div>
 						)
 					})

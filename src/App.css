@@ -23,7 +23,7 @@ html {
 	margin-block: 2rem;
 
 	.calendar__hours {
-		block-size: 780px;
+		block-size: 720px;
 		display: grid;
 		grid-template-rows: repeat(24, 1fr);
 		align-items: center;
@@ -39,23 +39,11 @@ html {
 	}
 
 	.calendar__events {
-		display: grid;
-		padding-inline: 10px;
-		grid-template-rows: repeat(780, 1px);
+		overflow-x: auto;
+		padding: 10px;
 	}
 }
 
 .calendar__event {
 	overflow: hidden;
-	container: event / size;
-
-	.calendar__event-subtitle {
-		display: block;
-	}
-}
-
-@container event(height <= 40px) {
-	.calendar__event-subtitle {
-		display: none;
-	}
 }
