@@ -9,9 +9,7 @@
 	}
 }
 
-#root,
-body,
-html {
+#root {
 	max-block-size: 100dvh;
 }
 
@@ -37,13 +35,4 @@ html {
 			display: none;
 		}
 	}
-
-	.calendar__events {
-		padding-inline: 10px;
-		overflow-y: auto;
-	}
-}
-
-.calendar__event {
-	overflow: hidden;
 }

@@ -15,7 +15,7 @@ export default function CalendarView({ events }: { events: EventProp[] }) {
 			calendarEvents.current.scrollWidth !== calendarEventsWidth
 		)
 			setCalendarEventsWidth(calendarEvents.current.scrollWidth)
-	// eslint-disable-next-line react-hooks/exhaustive-deps
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [events])
 
 	console.log(calendarEventsWidth)
@@ -39,7 +39,7 @@ export default function CalendarView({ events }: { events: EventProp[] }) {
 					</Fragment>
 				))}
 			</div>
-			<div className="calendar__events | bg-gray-100 outline outline-gray-200 outline-1 rounded-md">
+			<div className="calendar__events | px-[10px] bg-gray-100 outline outline-gray-200 outline-1 rounded-md">
 				<div
 					className="calendar__events-wrapper | relative h-full overflow-y-auto"
 					ref={calendarEvents}
@@ -50,7 +50,7 @@ export default function CalendarView({ events }: { events: EventProp[] }) {
 							return (
 								<div
 									key={e.title + e.start + Math.random() * 100}
-									className="calendar__event | absolute grid gap-1.5 content-start bg-white p-1.5 border border-solid border-gray-200 border-l-2 border-l-blue-950 rounded-e"
+									className="calendar__event | absolute overflow-hidden grid gap-1.5 content-start bg-white p-1.5 border border-solid border-gray-200 border-l-2 border-l-blue-950 rounded-e"
 									style={
 										{
 											top: `${29 * (e.start / 60) * 2 + 14}px`,
