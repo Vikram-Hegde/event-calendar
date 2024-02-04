@@ -18,7 +18,7 @@ import {
 // let counter = 1
 
 function App() {
-	const [eventsList, setEventsList] = useState(events as EventProp[])
+	const [eventsList] = useState(events as EventProp[])
 	const [open, setOpen] = useState(false)
 	const eventForm = useFormStore({
 		defaultValues: { title: '', start: '', end: '' },
