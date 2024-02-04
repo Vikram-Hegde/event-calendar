@@ -1,6 +1,6 @@
 #root {
 	--gap: 0.75rem;
-	--width: calc(620px + var(--gap));
+	--width: calc(620px + var(--gap, 0));
 	display: grid;
 	grid-template-rows: auto 1fr;
 

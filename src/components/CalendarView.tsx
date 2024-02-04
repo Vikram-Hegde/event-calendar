@@ -52,8 +52,8 @@ export default function CalendarView({ events }: { events: EventProp[] }) {
 								className="calendar__event | absolute grid gap-1.5 content-start bg-white outline outline-1 outline-gray-200 p-1.5 border-l-2 border-blue-950 rounded-e"
 								style={
 									{
-										top: `${e.start}px`,
-										height: `${(e.end - e.start)}px`,
+										top: `${29 * (e.start / 60) * 2 + 14}px`,
+										height: `${e.end - e.start}px`,
 										width: `max(calc(${calendarEventsWidth}px / ${event.length}), 170px)`,
 										left:
 											calendarEventsWidth / event.length > 170
