@@ -1,4 +1,5 @@
 import { CSSProperties } from 'react'
+import { getHeight, getLeft, getTop, getWidth } from '../utils/getDimensions'
 
 export default function CalendarEvent({
 	item,
@@ -11,23 +12,20 @@ export default function CalendarEvent({
 	calendarEventsWidth: number
 	eventLength: number
 }) {
+	const eventDimensions: CSSProperties = {
+		top: getTop(item),
+		height: getHeight(item),
+		width: getWidth(calendarEventsWidth, eventLength),
+		left: getLeft(calendarEventsWidth, eventLength, index),
+		// width: `calc(${calendarEventsWidth}px / ${event.length})`,
+		// left: `calc(${calendarEventsWidth}px / ${event.length} * ${i})`,
+	}
+
 	return (
 		<div
 			key={item.title + item.start + Math.random() * 100}
 			className="calendar__event | absolute overflow-hidden grid gap-1.5 content-start bg-white p-1.5 border border-solid border-gray-200 border-l-2 border-l-blue-900 rounded-e"
-			style={
-				{
-					top: `${29 * (item.start / 60) * 2 + 14}px`,
-					height: `${item.end - item.start}px`,
-					width: `max(calc(${calendarEventsWidth}px / ${eventLength}), 170px)`,
-					left:
-						calendarEventsWidth / eventLength > 170
-							? `calc(${calendarEventsWidth}px / ${eventLength} * ${index})`
-							: `calc(170px * ${index})`,
-					// width: `calc(${calendarEventsWidth}px / ${event.length})`,
-					// left: `calc(${calendarEventsWidth}px / ${event.length} * ${i})`,
-				} as CSSProperties
-			}
+			style={eventDimensions}
 		>
 			<div className="calendar__event-title | leading-[1cap] text-sm text-blue-500 font-semibold">
 				{item.title}

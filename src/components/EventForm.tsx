@@ -15,6 +15,8 @@ export default function EventForm({ open, onClose, onSubmit }: EventFormProps) {
 		e.currentTarget.reset()
 	}
 
+	const pattern = '^(0?[1-9]|1[0-2]):[0-5][0-9] [APap][Mm]$'
+
 	return (
 		<div
 			className={`modal no-padding | w-[90%] max-w-[var(--width)] z-50 fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] p-4 bg-white shadow-md rounded-md ${
@@ -23,7 +25,7 @@ export default function EventForm({ open, onClose, onSubmit }: EventFormProps) {
 		>
 			<h2 className="text-2xl font-bold mb-5">New Event</h2>
 			<form className="flex flex-col gap-3 w-full" onSubmit={handleFormSubmit}>
-				<div className="flex flex-col gap-2">
+				<div className="flex flex-col gap-1">
 					<label htmlFor="title">Title</label>
 					<input type="text" name="title" id="title" required autoFocus />
 				</div>
@@ -35,7 +37,7 @@ export default function EventForm({ open, onClose, onSubmit }: EventFormProps) {
 						id="start-time"
 						step={60}
 						className="w-full"
-						pattern="^(0?[1-9]|1[0-2]):[0-5][0-9] [APap][Mm]$"
+						pattern={pattern}
 						required
 					/>
 				</div>
@@ -47,7 +49,7 @@ export default function EventForm({ open, onClose, onSubmit }: EventFormProps) {
 						id="end-time"
 						className="w-full"
 						step={60}
-						pattern="^(0?[1-9]|1[0-2]):[0-5][0-9] [APap][Mm]$"
+						pattern={pattern}
 						required
 					/>
 				</div>

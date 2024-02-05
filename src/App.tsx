@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 import { events } from './assets/events'
-import Logo from './assets/icons/logo.svg'
-import CalendarView from './components/CalendarView'
-import Button from './components/Button'
 import AddIcon from './assets/icons/AddIcon'
+import Logo from './assets/icons/logo.svg'
+import Button from './components/Button'
+import CalendarView from './components/CalendarView'
 import EventForm from './components/EventForm'
+import { convertTimeToOffset } from './utils/convertTimeToOffset'
 
 function App() {
 	const [eventsList, setEventsList] = useState(events as EventProp[])
@@ -31,25 +32,14 @@ function App() {
 	}, [])
 
 	const handleFormSubmit = (formData: FormData) => {
-		function convertTimeToOffset(time: string, offsetStart: number) {
-			const [hour, minute] = time.split(':').map((time) => parseInt(time))
-			const isPM = time.includes('PM')
-			const offset = (hour - offsetStart) * 60 + minute
-			if (isPM) {
-				return offset + 12 * 60
-			}
-			return offset
-		}
-
-		// convert start-time and end-time to a number which is the offset in terms of minutes from 9:00 AM
 		const startTime = formData.get('start-time') as string
 		const endTime = formData.get('end-time') as string
-		const startOffset = convertTimeToOffset(startTime, 9)
-		const endOffset = convertTimeToOffset(endTime, 9)
 		const title = formData.get('title') as string
 
+		const startOffset = convertTimeToOffset(startTime, 9)
+		const endOffset = convertTimeToOffset(endTime, 9)
+
 		if (startOffset >= endOffset) {
-			console.log(' i was called ')
 			return alert('End time should be greater than start time')
 		} else if (!title || !startTime || !endTime) {
 			return alert('All fields are required')

@@ -25,11 +25,7 @@ export default function CalendarView({ events }: { events: EventProp[] }) {
 		<section className="calendar | p-[1px] gap-[var(--gap)]">
 			<div className="calendar__hours | text-gray-600">
 				{hours.map(({ hour, timeOfTheDay }, index) => (
-					<CalendarHour
-						key={hour + timeOfTheDay + index}
-						hour={hour}
-						timeOfTheDay={timeOfTheDay}
-					/>
+					<CalendarHour key={index} hour={hour} timeOfTheDay={timeOfTheDay} />
 				))}
 			</div>
 			<div className="calendar__events | px-[10px] bg-gray-100 outline outline-gray-200 outline-1 rounded-md">
@@ -40,17 +36,15 @@ export default function CalendarView({ events }: { events: EventProp[] }) {
 					{Object.keys(categorizedEvents).map((key) => {
 						const event = categorizedEvents[key]
 
-						return event.map((item, index) => {
-							return (
-								<CalendarEvent
-									key={item.title + item.start + index}
-									item={item}
-									index={index}
-									calendarEventsWidth={calendarEventsWidth}
-									eventLength={event.length}
-								/>
-							)
-						})
+						return event.map((item, index) => (
+							<CalendarEvent
+								key={index}
+								item={item}
+								index={index}
+								calendarEventsWidth={calendarEventsWidth}
+								eventLength={event.length}
+							/>
+						))
 					})}
 				</div>
 			</div>
