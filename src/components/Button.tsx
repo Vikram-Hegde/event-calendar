@@ -14,7 +14,7 @@ export default function Button({
 }: ButtonProp) {
 	return (
 		<button
-			className={`py-1.5 px-2 flex items-center gap-2 rounded-md ${className}`}
+			className={`py-1.5 px-3 flex items-center gap-2 rounded-md font-semibold ${className}`}
 			onClick={onClick}
 			type={type}
 		>

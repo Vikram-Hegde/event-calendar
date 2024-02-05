@@ -1,11 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body,
-html {
+html,
+.calendar__events-wrapper {
 	scrollbar-gutter: stable;
 	scrollbar-width: thin;
 }
+
 #root {
 	--gap: 0.75rem;
 	--width: calc(620px + var(--gap, 0));
+	--height: 720px;
 	display: grid;
 	grid-template-rows: auto 1fr;
 	max-block-size: 100dvh;
@@ -24,7 +31,7 @@ html {
 	margin-block: 2rem;
 
 	.calendar__hours {
-		block-size: 720px;
+		block-size: var(--height);
 		display: grid;
 		grid-template-rows: repeat(24, 1fr);
 		align-items: center;
@@ -48,4 +55,20 @@ html {
 	block-size: 100%;
 	background-color: rgba(0, 0, 0, 0.5);
 	z-index: 1;
+}
+
+input {
+	background-color: hsl(0 0% 95%);
+	padding: 0.25rem 0.5rem;
+	/* block-size: 1.75rem; */
+	outline: none;
+	border-radius: 6px;
+
+	&:focus-visible {
+		background-color: hsl(0 0% 91%);
+	}
+}
+
+label {
+	font-weight: 500;
 }
