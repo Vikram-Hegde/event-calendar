@@ -3,8 +3,7 @@
 @tailwind utilities;
 
 body,
-html,
-.calendar__events-wrapper {
+html {
 	scrollbar-gutter: stable;
 	scrollbar-width: thin;
 }
@@ -16,12 +15,15 @@ html,
 	--event-min-width: 170px;
 	display: grid;
 	grid-template-rows: auto 1fr;
-	max-block-size: 100dvh;
-	/* position: relative; */
+	/* max-block-size: 100dvh; */
 
 	& > *:not(.no-padding) {
 		padding-inline: max(1rem, 50% - var(--width) / 2);
 	}
+}
+
+.modal {
+	--width: 380px;
 }
 
 .calendar {
@@ -37,6 +39,10 @@ html,
 		grid-template-rows: repeat(24, 1fr);
 		align-items: center;
 		justify-items: end;
+	}
+
+	.calendar__events-wrapper {
+		scrollbar-width: thin;
 	}
 
 	.calendar__hour {

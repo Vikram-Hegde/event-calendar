@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { memo, useEffect, useRef, useState } from 'react'
 import categorizeEvents from '../utils/categorizeEvents'
 import generateHours from '../utils/generateHours'
 import CalendarEvent from './CalendarEvent'
@@ -6,11 +6,17 @@ import CalendarHour from './CalendarHour'
 
 const hours = generateHours(9, 12)
 
-export default function CalendarView({ events }: { events: EventProps[] }) {
+export default memo(function CalendarView({
+	events,
+}: {
+	events: EventProps[]
+}) {
 	const sortedEvents = events.sort((a, b) => a.start - b.start)
 	const categorizedEvents = categorizeEvents(sortedEvents)
 	const calendarEvents = useRef<HTMLDivElement>(null)
 	const [calendarEventsWidth, setCalendarEventsWidth] = useState<number>(0)
+
+	console.log('i was rendered')
 
 	useEffect(() => {
 		if (
@@ -50,4 +56,4 @@ export default function CalendarView({ events }: { events: EventProps[] }) {
 			</div>
 		</section>
 	)
-}
+})
