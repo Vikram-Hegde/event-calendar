@@ -13,11 +13,13 @@ export const getTop = (item: EventProps) => {
 }
 
 /**
+ * The height of the event item is calculated by subtracting the start time from the end time.
+ * We subtract 2 pixels to make up for the border of the event time on top and bottom which is of 1px each.
  * @param item - EventItem
  * @returns Height of the event item
  */
 export const getHeight = (item: EventProps) => {
-	return `${item.end - item.start}px`
+	return `${item.end - item.start - 2}px`
 }
 
 /**

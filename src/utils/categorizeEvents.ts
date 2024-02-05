@@ -21,7 +21,7 @@ export default function categorizeEvents(
 
 		if (acc[prevHourKey]) {
 			const shouldAddToPrevHour = acc[prevHourKey]?.some((e) => {
-				return event.start >= e.start && event.start <= e.end
+				return event.start > e.start && event.start < e.end
 			})
 
 			if (shouldAddToPrevHour) {
