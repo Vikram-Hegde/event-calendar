@@ -31,7 +31,6 @@ function App() {
 
 	const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
-		// get the form data
 		const formData = new FormData(e.currentTarget)
 
 		function convertTimeToOffset(time: string, offsetStart: number) {
@@ -54,6 +53,8 @@ function App() {
 		if (startOffset >= endOffset) {
 			console.log(' i was called ')
 			return alert('End time should be greater than start time')
+		} else if (!title || !startTime || !endTime) {
+			return alert('All fields are required')
 		}
 
 		// create the event object
@@ -87,7 +88,7 @@ function App() {
 			</main>
 			<div className="backdrop" data-backdrop={open}></div>
 			{open && (
-				<div className="modal no-padding | container max-w-[var(--width)] z-50 fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] p-4 bg-white shadow-md rounded-md">
+				<div className="modal no-padding | w-[90%] max-w-[var(--width)] z-50 fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] p-4 bg-white shadow-md rounded-md">
 					<h2 className="text-2xl font-bold mb-5">New Event</h2>
 					<form
 						className="flex flex-col gap-3 w-full"
@@ -95,13 +96,7 @@ function App() {
 					>
 						<div className="flex flex-col gap-2">
 							<label htmlFor="title">Title</label>
-							<input
-								type="text"
-								name="title"
-								id="title"
-								className="input"
-								autoFocus
-							/>
+							<input type="text" name="title" id="title" autoFocus />
 						</div>
 						<div className="flex flex-col gap-2">
 							<label htmlFor="start-time">Start Time</label>
@@ -110,6 +105,7 @@ function App() {
 								name="start-time"
 								id="start-time"
 								step={60}
+								className="w-full"
 								pattern="^(0?[1-9]|1[0-2]):[0-5][0-9] [APap][Mm]$"
 							/>
 						</div>
@@ -119,6 +115,7 @@ function App() {
 								type="time"
 								name="end-time"
 								id="end-time"
+								className="w-full"
 								step={60}
 								pattern="^(0?[1-9]|1[0-2]):[0-5][0-9] [APap][Mm]$"
 							/>

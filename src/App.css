@@ -12,7 +12,7 @@ html {
 	/* position: relative; */
 
 	& > *:not(.no-padding) {
-		padding-inline: max(2rem, 50% - var(--width) / 2);
+		padding-inline: max(1rem, 50% - var(--width) / 2);
 	}
 }
 
