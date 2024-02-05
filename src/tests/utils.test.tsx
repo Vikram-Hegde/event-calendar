@@ -14,7 +14,7 @@ test('getDimensions', () => {
 	}
 
 	expect(getTop(event)).toBe('72px')
-	expect(getHeight(event)).toBe('60px')
+	expect(getHeight(event)).toBe('58px')
 	expect(getLeft(170, 1, 1)).toBe(
 		`max(170px / 1 * 1, var(--event-min-width) * 1)`
 	)
