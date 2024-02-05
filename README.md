@@ -1,30 +1,37 @@
-# React + TypeScript + Vite
+# Zenskar Event Calendar (Single Day)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Create a single-day calendar layout in React that visually organizes a set of events without overlap, akin to the interfaces found in Outlook, Calendar.app, and Google Calendar. Your layout must adhere to specific constraints to ensure a clean and functional user experience.
 
-Currently, two official plugins are available:
+## Deployment
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The application is deployed on Vercel and can be accessed [here](https://zenskar-event-calendar.vercel.app/).
 
-## Expanding the ESLint configuration
+# Problem Features
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Layout Constraints
 
-- Configure the top-level `parserOptions` property like this:
+Non-Overlapping Events: Design the calendar so that events do not visually overlap.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+Concurrent Events Share Width: When events coincide timewise, they must be rendered with the same width to indicate their concurrency.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Maximize Width Utilization: Each event should expand to use as much width as possible, given the equal width constraint for concurrent events is met.
+
+Valid Input Assumption: Assume all event input data is valid and free of errors.
+
+### Event Data Structure
+
+Represent each event with a JavaScript object containing start and end attributes, representing minutes passed since 9 AM. For example, {start: 30, end: 90} signifies an event from 9:30 AM to 10:30 AM.
+
+### Display Container
+
+The events must be displayed within a 620px wide container (600px for content and 10px of padding on the left and right) and 720px tall, representing a 9 AM to 9 PM schedule.
+
+### Styling
+
+Match the event styling to the attached design screenshot, ensuring a professional and clean aesthetic aligning with standard business applications.
+
+### Deliverable
+
+Submit a React application that renders the single-day event calendar, complete with the layout function and a sample dataset.
+
+Feel free to structure your code as desired, but it should include the implementation of a function in the global namespace. This function must take an array of events and arrange them according to the outlined specifications.
