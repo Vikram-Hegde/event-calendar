@@ -45,6 +45,10 @@ html {
 		scrollbar-width: thin;
 	}
 
+	.calendar__event-title {
+		white-space: nowrap;
+	}
+
 	.calendar__hour {
 		line-height: 1cap;
 

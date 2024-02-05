@@ -27,7 +27,12 @@ export default function CalendarEvent({
 			className="calendar__event | absolute overflow-hidden grid gap-1.5 content-start bg-white p-1.5 border border-solid border-gray-200 border-l-2 border-l-blue-900 rounded-e"
 			style={eventDimensions}
 		>
-			<div className="calendar__event-title | truncate leading-[1cap] text-sm text-blue-500 font-semibold">
+			<div
+				className="calendar__event-title | leading-[1cap] text-sm text-blue-500 font-semibold"
+				title={`${item.title} - ${item.start / 60 + ':' + (item.start % 60)}:${
+					item.end
+				}`}
+			>
 				{item.title}
 			</div>
 

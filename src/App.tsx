@@ -25,7 +25,7 @@ function App() {
 				<div className="header__actions">
 					<Button
 						onClick={() => setOpen(true)}
-						className="bg-slate-600 text-slate-100"
+						className="bg-slate-600 hover:bg-slate-700 active:scale-95 text-slate-100"
 					>
 						<AddIcon />
 						New event
