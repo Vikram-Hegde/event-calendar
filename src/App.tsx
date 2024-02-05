@@ -45,7 +45,6 @@ function App() {
 			return alert('All fields are required')
 		}
 
-		// create the event object
 		const newEvent = {
 			title,
 			start: startOffset,
