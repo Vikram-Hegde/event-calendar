@@ -10,6 +10,8 @@ export default function CalendarView({ events }: { events: EventProp[] }) {
 	const calendarEvents = useRef<HTMLDivElement>(null)
 	const [calendarEventsWidth, setCalendarEventsWidth] = useState<number>(0)
 
+	// console.log(categorizedEvents)
+
 	useEffect(() => {
 		if (
 			calendarEvents.current &&
@@ -18,8 +20,6 @@ export default function CalendarView({ events }: { events: EventProp[] }) {
 			setCalendarEventsWidth(calendarEvents.current.scrollWidth)
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [events])
-
-	// console.log(calendarEventsWidth)
 
 	return (
 		<section className="calendar | p-[1px] gap-[var(--gap)]">
@@ -47,6 +47,7 @@ export default function CalendarView({ events }: { events: EventProp[] }) {
 				>
 					{Object.keys(categorizedEvents).map((key) => {
 						const event = categorizedEvents[key]
+
 						return event.map((item, index) => {
 							return (
 								<div
@@ -60,7 +61,7 @@ export default function CalendarView({ events }: { events: EventProp[] }) {
 											left:
 												calendarEventsWidth / event.length > 170
 													? `calc(${calendarEventsWidth}px / ${event.length} * ${index})`
-													: `calc(170px * ${index}`,
+													: `calc(170px * ${index})`,
 											// width: `calc(${calendarEventsWidth}px / ${event.length})`,
 											// left: `calc(${calendarEventsWidth}px / ${event.length} * ${i})`,
 										} as CSSProperties

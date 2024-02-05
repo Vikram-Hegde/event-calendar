@@ -1,16 +1,19 @@
+body,
+html {
+	scrollbar-gutter: stable;
+	scrollbar-width: thin;
+}
 #root {
 	--gap: 0.75rem;
 	--width: calc(620px + var(--gap, 0));
 	display: grid;
 	grid-template-rows: auto 1fr;
+	max-block-size: 100dvh;
+	/* position: relative; */
 
-	& > * {
+	& > *:not(.no-padding) {
 		padding-inline: max(2rem, 50% - var(--width) / 2);
 	}
-}
-
-#root {
-	max-block-size: 100dvh;
 }
 
 .calendar {
@@ -35,4 +38,14 @@
 			display: none;
 		}
 	}
+}
+
+[data-backdrop='true'] {
+	position: fixed;
+	top: 0;
+	left: 0;
+	inline-size: 100%;
+	block-size: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 1;
 }

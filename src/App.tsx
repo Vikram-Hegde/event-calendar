@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import { events } from './assets/events'
 import Logo from './assets/icons/logo.svg'
@@ -9,6 +9,25 @@ import AddIcon from './assets/icons/AddIcon'
 function App() {
 	const [eventsList, setEventsList] = useState(events as EventProp[])
 	const [open, setOpen] = useState(false)
+
+	if (open) document.body.style.overflow = 'hidden'
+	else document.body.style.overflow = 'auto'
+
+	useEffect(() => {
+		const handleEsc = (e: KeyboardEvent) => {
+			if (e.key === 'Escape') setOpen(false)
+		}
+		window.addEventListener('keydown', handleEsc)
+
+		window.addEventListener('click', (e) => {
+			const backdrop = e.target as HTMLDivElement
+			if (backdrop.dataset.backdrop === 'true') setOpen(false)
+		})
+
+		return () => {
+			window.removeEventListener('keydown', handleEsc)
+		}
+	}, [])
 
 	const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
@@ -32,7 +51,10 @@ function App() {
 		const endOffset = convertTimeToOffset(endTime, 9)
 		const title = formData.get('title') as string
 
-		console.log(startOffset, endOffset)
+		if (startOffset >= endOffset) {
+			console.log(' i was called ')
+			return alert('End time should be greater than start time')
+		}
 
 		// create the event object
 		const newEvent = {
@@ -65,47 +87,54 @@ function App() {
 			</main>
 			<div className="backdrop" data-backdrop={open}></div>
 			{open && (
-				<div className="modal">
-					<div className="modal__content">
-						<h2 className="text-2xl font-bold mb-5">New Event</h2>
-						<form className="flex flex-col gap-3" onSubmit={handleFormSubmit}>
-							<div className="flex flex-col gap-2">
-								<label htmlFor="title">Title</label>
-								<input type="text" name="title" id="title" className="input" />
-							</div>
-							<div className="flex flex-col gap-2">
-								<label htmlFor="start-time">Start Time</label>
-								<input
-									type="time"
-									name="start-time"
-									id="start-time"
-									step={60}
-									pattern="^(0?[1-9]|1[0-2]):[0-5][0-9] [APap][Mm]$"
-								/>
-							</div>
-							<div className="flex flex-col gap-2">
-								<label htmlFor="end-time">End Time</label>
-								<input
-									type="time"
-									name="end-time"
-									id="end-time"
-									step={60}
-									pattern="^(0?[1-9]|1[0-2]):[0-5][0-9] [APap][Mm]$"
-								/>
-							</div>
-							<div className="flex justify-end gap-3">
-								<Button
-									onClick={() => setOpen(false)}
-									className="bg-slate-600 text-slate-100"
-								>
-									Cancel
-								</Button>
-								<Button className="bg-slate-600 text-slate-100" type="submit">
-									Add
-								</Button>
-							</div>
-						</form>
-					</div>
+				<div className="modal no-padding | container max-w-[var(--width)] z-50 fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] p-4 bg-white shadow-md rounded-md">
+					<h2 className="text-2xl font-bold mb-5">New Event</h2>
+					<form
+						className="flex flex-col gap-3 w-full"
+						onSubmit={handleFormSubmit}
+					>
+						<div className="flex flex-col gap-2">
+							<label htmlFor="title">Title</label>
+							<input
+								type="text"
+								name="title"
+								id="title"
+								className="input"
+								autoFocus
+							/>
+						</div>
+						<div className="flex flex-col gap-2">
+							<label htmlFor="start-time">Start Time</label>
+							<input
+								type="time"
+								name="start-time"
+								id="start-time"
+								step={60}
+								pattern="^(0?[1-9]|1[0-2]):[0-5][0-9] [APap][Mm]$"
+							/>
+						</div>
+						<div className="flex flex-col gap-2">
+							<label htmlFor="end-time">End Time</label>
+							<input
+								type="time"
+								name="end-time"
+								id="end-time"
+								step={60}
+								pattern="^(0?[1-9]|1[0-2]):[0-5][0-9] [APap][Mm]$"
+							/>
+						</div>
+						<div className="flex justify-end gap-3">
+							<Button
+								onClick={() => setOpen(false)}
+								className="bg-slate-600 text-slate-100"
+							>
+								Cancel
+							</Button>
+							<Button className="bg-slate-600 text-slate-100" type="submit">
+								Add
+							</Button>
+						</div>
+					</form>
 				</div>
 			)}
 		</>

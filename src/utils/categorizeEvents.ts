@@ -18,9 +18,6 @@ export default function categorizeEvents(
 		const timeOfTheDay = startHour < 12 ? 'AM' : 'PM'
 		const prevHourKey = Object.keys(acc)[Object.keys(acc).length - 1]
 		const currentHourKey = `${startIn12HourFormat}${timeOfTheDay}`
-		const nextHourKey = Object.keys(acc)[Object.keys(acc).length + 1]
-
-		console.log(nextHourKey)
 
 		if (acc[prevHourKey]) {
 			const shouldAddToPrevHour = acc[prevHourKey]?.some((e) => {
