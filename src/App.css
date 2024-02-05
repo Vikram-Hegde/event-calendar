@@ -13,6 +13,7 @@ html,
 	--gap: 0.75rem;
 	--width: calc(620px + var(--gap, 0));
 	--height: 720px;
+	--event-min-width: 170px;
 	display: grid;
 	grid-template-rows: auto 1fr;
 	max-block-size: 100dvh;

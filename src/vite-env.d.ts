@@ -1,11 +1,11 @@
 /// <reference types="vite/client" />
 
-interface EventProp {
+interface EventProps {
 	start: number
 	end: number
 	title: string
 }
 
-type CategorizedEventsProp = {
-	[key: string]: EventProp[]
+type CategorizedEventsProps = {
+	[key: string]: EventProps[]
 }

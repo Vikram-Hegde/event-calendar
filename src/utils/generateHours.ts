@@ -1,5 +1,5 @@
 /**
- * Accepts two arguments
+ * Accepts two arguments and returns an array of objects with hour and timeOfTheDay properties
  * @param start - start time in 12 hour format
  * @param noOfHours - number of hours to generate
  */

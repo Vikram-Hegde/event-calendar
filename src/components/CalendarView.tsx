@@ -6,7 +6,7 @@ import CalendarHour from './CalendarHour'
 
 const hours = generateHours(9, 12)
 
-export default function CalendarView({ events }: { events: EventProp[] }) {
+export default function CalendarView({ events }: { events: EventProps[] }) {
 	const sortedEvents = events.sort((a, b) => a.start - b.start)
 	const categorizedEvents = categorizeEvents(sortedEvents)
 	const calendarEvents = useRef<HTMLDivElement>(null)
@@ -30,7 +30,7 @@ export default function CalendarView({ events }: { events: EventProp[] }) {
 			</div>
 			<div className="calendar__events | px-[10px] bg-gray-100 outline outline-gray-200 outline-1 rounded-md">
 				<div
-					className="calendar__events-wrapper | relative h-full overflow-y-auto"
+					className="calendar__events-wrapper | relative h-full overflow-y-auto outline-none"
 					ref={calendarEvents}
 				>
 					{Object.keys(categorizedEvents).map((key) => {

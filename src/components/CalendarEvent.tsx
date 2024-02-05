@@ -7,7 +7,7 @@ export default function CalendarEvent({
 	calendarEventsWidth,
 	eventLength,
 }: {
-	item: EventProp
+	item: EventProps
 	index: number
 	calendarEventsWidth: number
 	eventLength: number

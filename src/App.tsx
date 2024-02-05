@@ -9,7 +9,7 @@ import EventForm from './components/EventForm'
 import { convertTimeToOffset } from './utils/convertTimeToOffset'
 
 function App() {
-	const [eventsList, setEventsList] = useState(events as EventProp[])
+	const [eventsList, setEventsList] = useState(events as EventProps[])
 	const [open, setOpen] = useState(false)
 
 	if (open) document.body.style.overflow = 'hidden'
@@ -36,8 +36,8 @@ function App() {
 		const endTime = formData.get('end-time') as string
 		const title = formData.get('title') as string
 
-		const startOffset = convertTimeToOffset(startTime, 9)
-		const endOffset = convertTimeToOffset(endTime, 9)
+		const startOffset = convertTimeToOffset(startTime)
+		const endOffset = convertTimeToOffset(endTime)
 
 		if (startOffset >= endOffset) {
 			return alert('End time should be greater than start time')

@@ -1,8 +1,8 @@
 /**
  * When this file is modified, the changes are not reflected in the browser.
- * Save the file and click on Update button in the browser to see the changes.
+ * Save the file and click on Refresh button in the browser to see the changes.
  */
-export const events: EventProp[] = [
+export const events: EventProps[] = [
 	{
 		start: 60,
 		end: 90,
