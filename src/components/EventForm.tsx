@@ -1,20 +1,41 @@
 import React from 'react'
-import Button from './Button' // Import the Button component if it's not already imported
+import Button from './Button'
+import { convertTimeToOffset } from '../utils/convertTimeToOffset'
 
 interface EventFormProps {
 	open: boolean
 	onClose: () => void
-	onSubmit: (formData: FormData) => void
+	onSubmit: (event: EventProps) => void
 }
 
 export default function EventForm({ open, onClose, onSubmit }: EventFormProps) {
 	const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
 		const formData = new FormData(e.currentTarget)
-		onSubmit(formData)
+		const startTime = formData.get('start-time') as string
+		const endTime = formData.get('end-time') as string
+		const title = formData.get('title') as string
+
+		const startOffset = convertTimeToOffset(startTime)
+		const endOffset = convertTimeToOffset(endTime)
+
+		if (startOffset >= endOffset) {
+			return alert('End time should be greater than start time')
+		} else if (!title || !startTime || !endTime) {
+			return alert('All fields are required')
+		}
+
+		const newEvent: EventProps = {
+			title,
+			start: startOffset,
+			end: endOffset,
+		}
+
+		onSubmit(newEvent)
 		e.currentTarget.reset()
 	}
 
+	// This pattern is used to validate the time input in 12-hour format
 	const pattern = '^(0?[1-9]|1[0-2]):[0-5][0-9] [APap][Mm]$'
 
 	return (
@@ -65,3 +86,4 @@ export default function EventForm({ open, onClose, onSubmit }: EventFormProps) {
 		</div>
 	)
 }
+

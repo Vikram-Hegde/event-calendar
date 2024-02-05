@@ -16,7 +16,7 @@ export default memo(function CalendarView({
 	const calendarEvents = useRef<HTMLDivElement>(null)
 	const [calendarEventsWidth, setCalendarEventsWidth] = useState<number>(0)
 
-	console.log('i was rendered')
+	// console.log('i was rendered')
 
 	useEffect(() => {
 		if (
