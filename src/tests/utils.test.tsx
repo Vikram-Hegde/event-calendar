@@ -58,7 +58,6 @@ const events = [
 ]
 
 const categorizedEvents = categorizeEvents(events, 9)
-console.log(categorizedEvents)
 
 test('categorizeEvents', () => {
 	expect(categorizedEvents['9AM']).toHaveLength(1)
