@@ -1,4 +1,4 @@
-// test the util functions from src/utils/*
+// testing the util functions from src/utils/*
 
 import { expect, test } from 'vitest'
 import { getHeight, getLeft, getTop, getWidth } from '../utils/getDimensions'
@@ -49,39 +49,6 @@ testCases.forEach((testCase) => {
 	})
 })
 
-// export default function categorizeEvents(
-// 	events: EventProps[],
-// 	beginWith?: number
-// ) {
-// 	return events.reduce<CategorizedEventsProps>((acc, event) => {
-// 		const startHour = (beginWith ?? 9) + Math.floor(event.start / 60)
-// 		const startIn12HourFormat = startHour % 12 ? startHour % 12 : 12
-// 		const timeOfTheDay = startHour < 12 ? 'AM' : 'PM'
-// 		const prevHourKey = Object.keys(acc)[Object.keys(acc).length - 1]
-// 		const currentHourKey = `${startIn12HourFormat}${timeOfTheDay}`
-
-// 		if (acc[prevHourKey]) {
-// 			const shouldAddToPrevHour = acc[prevHourKey]?.some((e) => {
-// 				return event.start >= e.start && event.start <= e.end
-// 			})
-
-// 			if (shouldAddToPrevHour) {
-// 				acc[prevHourKey].push(event)
-// 				return acc
-// 			}
-// 		}
-
-// 		if (acc[currentHourKey]) {
-// 			acc[currentHourKey].push(event)
-// 		} else {
-// 			acc[currentHourKey] = [event]
-// 		}
-
-// 		return acc
-// 	}, {})
-// }
-
-// write test cases for the above function
 const events = [
 	{ start: 0, end: 60, title: 'some new event' },
 	{ start: 60, end: 120, title: 'some new event' },
