@@ -13,6 +13,7 @@
  * 11. If it is not, add the event to the sub array
  * 12. Finally, add the sub array to the main array
  */
+
 export default function categorizeEvents(items: EventProps[]) {
 	const groupedItems: (EventProps | object)[][] = []
 
@@ -21,13 +22,14 @@ export default function categorizeEvents(items: EventProps[]) {
 
 		for (let i = 0; i < groupedItems.length; i++) {
 			const subArray = groupedItems[i]
-			if (item.start < subArray[0]?.end) {
+			if (item.start < (subArray[0] as EventProps)?.end) {
 				let index = subArray.length
 				for (let j = 0; j < index; j++) {
 					for (const i in groupedItems) {
+						const currentItem = groupedItems[i][index] as EventProps
 						if (
-							item.start > groupedItems[i][index]?.start &&
-							item.start < groupedItems[i][index]?.end
+							item.start > currentItem?.start &&
+							item.start < currentItem?.end
 						) {
 							subArray.push({})
 							index++
