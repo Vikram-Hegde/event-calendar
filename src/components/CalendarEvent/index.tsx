@@ -7,18 +7,20 @@ export default function CalendarEvent({
 	calendarEventsWidth,
 	eventLength,
 }: {
-	item: EventProps
+	item: EventProps | object
 	index: number
 	calendarEventsWidth: number
 	eventLength: number
 }) {
+	if (!('title' in item)) return null
+
 	const eventDimensions: CSSProperties = {
 		top: getTop(item),
 		height: getHeight(item),
 		width: getWidth(calendarEventsWidth, eventLength),
 		left: getLeft(calendarEventsWidth, eventLength, index),
-		// width: `calc(${calendarEventsWidth}px / ${event.length})`,
-		// left: `calc(${calendarEventsWidth}px / ${event.length} * ${i})`,
+		// width: `calc(${calendarEventsWidth}px / ${eventLength})`,
+		// left: `calc(${calendarEventsWidth}px / ${eventLength} * ${index})`,
 	}
 
 	return (
