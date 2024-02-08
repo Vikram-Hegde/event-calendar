@@ -42,13 +42,17 @@ export default memo(function CalendarView({
 				>
 					{categorizeEvents(events).map((group) => {
 						const filteredItems = group.filter((item) => 'title' in item)
-						const length = filteredItems.length
-						const count = filteredItems.filter(
-							(item) => 'index' in item && item.index === 0
-						).length
-						const numberOfZeros = count - 1
-						const numberOfEvents = length - numberOfZeros
-						console.log(numberOfEvents)
+						// const length = filteredItems.length
+						// const count = filteredItems.filter(
+						// 	(item) => 'index' in item && item.index === 0
+						// ).length
+						const uniqueIndex = filteredItems.reduce((acc: number[], item) => {
+							if ('index' in item && !acc.includes(item.index)) {
+								acc.push(item.index)
+							}
+							return acc
+						}, [])
+						const numberOfEvents = uniqueIndex.length
 						return group.map((event, index) => {
 							if ('index' in event)
 								return (
