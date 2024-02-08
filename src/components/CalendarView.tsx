@@ -56,14 +56,22 @@ export default memo(function CalendarView({
 						))
 					})} */}
 					{categorizeEvents(events).map((group) => {
+						const filteredItems = group.filter((item) => 'title' in item)
+						const length = filteredItems.length
+						const count = filteredItems.filter(
+							(item) => item.index === 0
+						).length
+						const numberOfZeros = count - 1
+						const numberOfEvents = length - numberOfZeros
+						console.log(numberOfEvents)
 						return group.map((event, index) => {
 							return (
 								<CalendarEvent
 									key={index}
 									item={event}
-									index={index}
+									index={event.index}
 									calendarEventsWidth={calendarEventsWidth}
-									eventLength={group.length}
+									eventLength={numberOfEvents}
 								/>
 							)
 						})

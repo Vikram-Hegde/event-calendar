@@ -4,6 +4,7 @@ interface EventProps {
 	start: number
 	end: number
 	title: string
+	index: number
 }
 
 type CategorizedEventsProps = {
