@@ -1,5 +1,5 @@
 import { CSSProperties } from 'react'
-import { getHeight, getTop } from '../../utils/getDimensions'
+import { getHeight, getTop } from '../utils/getDimensions'
 
 export default function CalendarEvent({
 	item,

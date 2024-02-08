@@ -11,6 +11,7 @@ test('getDimensions', () => {
 		start: 60,
 		end: 120,
 		title: 'some new event',
+		index: 0, // added missing 'index' property
 	}
 
 	expect(getTop(event)).toBe('72px')

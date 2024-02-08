@@ -1,5 +1,5 @@
 /**
- * Step by step approach:
+ * Step by step approach on solving the layout:
  * 1. One main array to hold array of events
  * 2. Loop through the events array
  * 3. Create a sub array to hold events that are overlapping

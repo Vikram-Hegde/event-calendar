@@ -2,7 +2,7 @@
  * When this file is modified, the changes are not reflected in the browser.
  * Save the file and click on Refresh button in the browser to see the changes.
  */
-export const events: EventProps[] = [
+export const events: Omit<EventProps, 'index'>[] = [
 	{
 		title: 'Sample Item',
 		start: 10,

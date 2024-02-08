@@ -19,8 +19,6 @@ export default memo(function CalendarView({
 	const calendarEvents = useRef<HTMLDivElement>(null)
 	const [calendarEventsWidth, setCalendarEventsWidth] = useState<number>(0)
 
-	// console.log('i was rendered')
-
 	useEffect(() => {
 		if (
 			calendarEvents.current &&
@@ -42,24 +40,11 @@ export default memo(function CalendarView({
 					className="calendar__events-wrapper | relative h-full overflow-y-auto outline-none"
 					ref={calendarEvents}
 				>
-					{/* {Object.keys(categorizedEvents).map((key) => {
-						const event = categorizedEvents[key]
-
-						return event.map((item, index) => (
-							<CalendarEvent
-								key={index}
-								item={item}
-								index={index}
-								calendarEventsWidth={calendarEventsWidth}
-								eventLength={event.length}
-							/>
-						))
-					})} */}
 					{categorizeEvents(events).map((group) => {
 						const filteredItems = group.filter((item) => 'title' in item)
 						const length = filteredItems.length
 						const count = filteredItems.filter(
-							(item) => item.index === 0
+							(item) => 'index' in item && item.index === 0
 						).length
 						const numberOfZeros = count - 1
 						const numberOfEvents = length - numberOfZeros
