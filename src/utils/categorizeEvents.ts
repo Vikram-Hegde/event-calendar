@@ -71,7 +71,7 @@ export default function categorizeEvents(items: (EventProps | object)[]) {
 			) {
 				const mergedArray = previousArray.concat(currentArray)
 				if ('end' in mergedArray[mergedArray.length - 1]) {
-					;(mergedArray[mergedArray.length - 1] as EventProps).end = Math.max(
+					(mergedArray[mergedArray.length - 1] as EventProps).end = Math.max(
 						(previousArray[previousArray.length - 1] as EventProps)?.end,
 						(currentArray[currentArray.length - 1] as EventProps)?.end
 					)
