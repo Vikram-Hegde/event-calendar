@@ -29,6 +29,7 @@ export default function EventForm({ open, onClose, onSubmit }: EventFormProps) {
 			title,
 			start: startOffset,
 			end: endOffset,
+			index: 0,
 		}
 
 		onSubmit(newEvent)

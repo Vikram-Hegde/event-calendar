@@ -50,15 +50,16 @@ export default memo(function CalendarView({
 						const numberOfEvents = length - numberOfZeros
 						console.log(numberOfEvents)
 						return group.map((event, index) => {
-							return (
-								<CalendarEvent
-									key={index}
-									item={event}
-									index={event.index}
-									calendarEventsWidth={calendarEventsWidth}
-									eventLength={numberOfEvents}
-								/>
-							)
+							if ('index' in event)
+								return (
+									<CalendarEvent
+										key={index}
+										item={event}
+										index={event.index}
+										calendarEventsWidth={calendarEventsWidth}
+										eventLength={numberOfEvents}
+									/>
+								)
 						})
 					})}
 				</div>
