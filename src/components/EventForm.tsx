@@ -36,8 +36,8 @@ export default function EventForm({ open, onClose, onSubmit }: EventFormProps) {
 		e.currentTarget.reset()
 	}
 
-	// This pattern is used to validate the time input in 12-hour format
-	const pattern = '^(0?[1-9]|1[0-2]):[0-5][0-9] [APap][Mm]$'
+	// This pattern is used to validate the time input in 12-hour format (currently set to 9am to 9pm)
+	const pattern = '^(0?9|1[0-2]):[0-5][0-9] [APap][Mm]$'
 
 	if (open)
 		return (

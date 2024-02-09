@@ -2,7 +2,6 @@ import { useState } from 'react'
 import './App.css'
 import { events } from './assets/events'
 import AddIcon from './assets/icons/AddIcon'
-import Logo from './assets/icons/logo.svg'
 import Backdrop from './components/Backdrop'
 import Button from './components/Button'
 import CalendarView from './components/CalendarView'
@@ -19,13 +18,13 @@ function App() {
 
 	return (
 		<>
-			<header className="bg-slate-100 py-5 flex justify-between">
-				<img src={Logo} alt="logo" />
+			<header className="bg-[#1d2233] py-5 flex justify-between">
+				<h2 className="logo | text-white text-2xl">Zenskar</h2>
 
 				<div className="header__actions">
 					<Button
 						onClick={() => setOpen(true)}
-						className="bg-slate-600 hover:bg-slate-700 active:scale-95 text-slate-100"
+						className="bg-slate-700 hover:bg-slate-600 active:scale-95 text-slate-100"
 					>
 						<AddIcon />
 						New event
