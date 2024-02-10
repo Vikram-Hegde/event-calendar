@@ -16,13 +16,21 @@ export default function EventForm({ open, onClose, onSubmit }: EventFormProps) {
 		const endTime = formData.get('end-time') as string
 		const title = formData.get('title') as string
 
-		const startOffset = convertTimeToOffset(startTime)
-		const endOffset = convertTimeToOffset(endTime)
+		if (!title || !startTime || !endTime) {
+			return alert('All fields are required')
+		}
+
+		const [startHour, startOffset] = convertTimeToOffset(startTime)
+		const [endHour, endOffset] = convertTimeToOffset(endTime)
+
+		console.log(startHour, endHour, endOffset)
+
+		if (startHour < 9 || endHour > 21 || endOffset >= 720) {
+			return alert('Time should be between 9am to 9pm')
+		}
 
 		if (startOffset >= endOffset) {
 			return alert('End time should be greater than start time')
-		} else if (!title || !startTime || !endTime) {
-			return alert('All fields are required')
 		}
 
 		const newEvent: EventProps = {

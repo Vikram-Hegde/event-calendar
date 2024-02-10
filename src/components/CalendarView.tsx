@@ -14,7 +14,7 @@ export default memo(function CalendarView({
 	const sortedEvents = events.sort((a, b) => a.start - b.start)
 	const categorizedEvents = categorizeEvents(sortedEvents)
 
-	console.log(categorizedEvents)
+	// console.log(categorizedEvents)
 
 	const calendarEvents = useRef<HTMLDivElement>(null)
 	const [calendarEventsWidth, setCalendarEventsWidth] = useState<number>(0)
@@ -40,7 +40,7 @@ export default memo(function CalendarView({
 					className="calendar__events-wrapper | relative h-full overflow-y-auto outline-none"
 					ref={calendarEvents}
 				>
-					{categorizeEvents(events).map((group) => {
+					{categorizedEvents.map((group) => {
 						const filteredItems = group.filter((item) => 'title' in item)
 						const uniqueIndex = filteredItems.reduce((acc: number[], item) => {
 							if ('index' in item && !acc.includes(item.index)) {
