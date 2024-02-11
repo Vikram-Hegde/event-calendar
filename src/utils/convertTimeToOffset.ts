@@ -8,8 +8,6 @@ export function convertTimeToOffset(time: string, offsetStart: number = 9) {
 	const [hour, minute] = time.split(':').map((time) => parseInt(time))
 	const isPM = time.includes('PM')
 
-	console.log(hour)
-
 	let offset = hour - offsetStart
 	if (isPM && hour < 12) {
 		offset = offset + 12

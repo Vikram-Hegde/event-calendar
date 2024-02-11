@@ -25,7 +25,7 @@ export default function EventForm({ open, onClose, onSubmit }: EventFormProps) {
 
 		console.log(startHour, endHour, endOffset)
 
-		if (startHour < 9 || endHour > 21 || endOffset >= 720) {
+		if (startHour < 9 || endHour > 21 || endOffset > 720) {
 			return alert('Time should be between 9am to 9pm')
 		}
 

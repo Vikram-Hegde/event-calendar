@@ -26,16 +26,15 @@ export default function categorizeEvents(items: (EventProps | object)[]) {
 				const subArray = groupedItems[i]
 				if (item.start < (subArray[0] as EventProps)?.end) {
 					let index = subArray.length
-					for (let j = 0; j < index; j++) {
-						for (const i in groupedItems) {
-							const currentItem = groupedItems[i][index] as EventProps
-							if (
-								item.start > currentItem?.start &&
-								item.start < currentItem?.end
-							) {
-								subArray.push({})
-								index++
-							}
+					for (const i in groupedItems) {
+						const currentItem = groupedItems[i][index] as EventProps
+						if (!currentItem) continue
+						if (
+							item.start > currentItem.start &&
+							item.start < currentItem.end
+						) {
+							subArray.push({})
+							index++
 						}
 					}
 					item.index = index
@@ -72,11 +71,11 @@ function mergeOverlappingArrays(
 
 		if (
 			(currentArray[0] as EventProps).start <=
-				(previousArray[previousArray.length - 1] as EventProps).end
+			(previousArray[previousArray.length - 1] as EventProps).end
 		) {
 			const mergedArray = previousArray.concat(currentArray)
 			if ('end' in mergedArray[mergedArray.length - 1]) {
-				(mergedArray[mergedArray.length - 1] as EventProps).end = Math.max(
+				;(mergedArray[mergedArray.length - 1] as EventProps).end = Math.max(
 					(previousArray[previousArray.length - 1] as EventProps)?.end,
 					(currentArray[currentArray.length - 1] as EventProps)?.end
 				)
