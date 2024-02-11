@@ -1,10 +1,9 @@
-// testing the util functions from src/utils/*
-
 import { expect, test } from 'vitest'
 import { getHeight, getLeft, getTop, getWidth } from '../utils/getDimensions'
 import generateHours from '../utils/generateHours'
 import { convertTimeToOffset } from '../utils/convertTimeToOffset'
-// import categorizeEvents from '../utils/categorizeEvents'
+import categorizeEvents from '../utils/categorizeEvents'
+import { events } from '../assets/events'
 
 test('getDimensions', () => {
 	const event = {
@@ -49,18 +48,12 @@ test('convertTimeToOffset', () => {
 	})
 })
 
-// const events = [
-// 	{ start: 0, end: 60, title: 'some new event' },
-// 	{ start: 60, end: 120, title: 'some new event' },
-// 	{ start: 80, end: 140, title: 'some new event' },
-// 	{ start: 120, end: 180, title: 'some new event' },
-// 	{ start: 190, end: 240, title: 'some new event' },
-// ]
+const categorizedEvents = categorizeEvents(events)
 
-// const categorizedEvents = categorizeEvents(events, 9)
-
-// test('categorizeEvents', () => {
-// 	expect(categorizedEvents['9AM']).toHaveLength(1)
-// 	expect(categorizedEvents['10AM']).toHaveLength(3)
-// 	expect(categorizedEvents['12PM']).toHaveLength(1)
-// })
+test('categorizeEvents', () => {
+	expect(categorizedEvents[0]).toHaveLength(4)
+	expect(categorizedEvents[1]).toHaveLength(2)
+	expect(categorizedEvents[2]).toHaveLength(1)
+	expect(categorizedEvents[3]).toHaveLength(9)
+	expect(categorizedEvents[4]).toHaveLength(3)
+})
