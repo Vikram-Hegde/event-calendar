@@ -1,5 +1,5 @@
 import { CSSProperties } from 'react'
-import { getHeight, getTop } from '../utils/getDimensions'
+import { getHeight, getLeft, getTop, getWidth } from '../utils/getDimensions'
 
 export default function CalendarEvent({
 	item,
@@ -17,10 +17,8 @@ export default function CalendarEvent({
 	const eventDimensions: CSSProperties = {
 		top: getTop(item),
 		height: getHeight(item),
-		// width: getWidth(calendarEventsWidth, eventLength),
-		// left: getLeft(calendarEventsWidth, eventLength, index),
-		width: `calc(${calendarEventsWidth}px / ${eventLength})`,
-		left: `calc(${calendarEventsWidth}px / ${eventLength} * ${index})`,
+		width: getWidth(calendarEventsWidth, eventLength),
+		left: getLeft(calendarEventsWidth, eventLength, index),
 	}
 
 	return (

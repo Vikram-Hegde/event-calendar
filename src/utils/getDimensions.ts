@@ -32,7 +32,8 @@ export const getHeight = (item: EventProps) => {
  * @returns Distributes the width of the event items based on the number of events in that row
  */
 export const getWidth = (calendarEventsWidth: number, eventLength: number) => {
-	return `max(${calendarEventsWidth}px / ${eventLength}, var(--event-min-width))`
+	// return `max(${calendarEventsWidth}px / ${eventLength}, var(--event-min-width))`
+	return `calc(${calendarEventsWidth}px / ${eventLength})`
 }
 
 /**
@@ -49,5 +50,6 @@ export const getLeft = (
 	eventLength: number,
 	index: number
 ) => {
-	return `max(${calendarEventsWidth}px / ${eventLength} * ${index}, var(--event-min-width) * ${index})`
+	// return `max(${calendarEventsWidth}px / ${eventLength} * ${index}, var(--event-min-width) * ${index})`
+	return `calc(${calendarEventsWidth}px / ${eventLength} * ${index})`
 }
