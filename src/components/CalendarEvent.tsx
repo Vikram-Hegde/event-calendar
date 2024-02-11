@@ -26,7 +26,7 @@ export default function CalendarEvent({
 	return (
 		<div
 			key={item.title + item.start + Math.random() * 100}
-			className="calendar__event | absolute overflow-hidden grid gap-1.5 content-start bg-white p-1.5 border border-solid border-gray-200 border-l-4 border-l-[#181e30] rounded-e"
+			className="calendar__event | absolute overflow-hidden grid gap-[6px] content-start bg-white p-1.5 border border-solid border-gray-200 border-l-4 border-l-[#181e30] rounded-e"
 			style={eventDimensions}
 		>
 			<div
@@ -36,8 +36,8 @@ export default function CalendarEvent({
 				{item.title}
 			</div>
 
-			{item.end - item.start > 45 && (
-				<div className="calendar__event-subtitle | text-xs text-gray-400">
+			{item.end - item.start > 30 && (
+				<div className="calendar__event-subtitle | text-xs text-gray-400 leading-[1cap]">
 					Sample location
 				</div>
 			)}

@@ -3,7 +3,7 @@
 import { expect, test } from 'vitest'
 import { getHeight, getLeft, getTop, getWidth } from '../utils/getDimensions'
 import generateHours from '../utils/generateHours'
-// import { convertTimeToOffset } from '../utils/convertTimeToOffset'
+import { convertTimeToOffset } from '../utils/convertTimeToOffset'
 // import categorizeEvents from '../utils/categorizeEvents'
 
 test('getDimensions', () => {
@@ -33,22 +33,21 @@ test('generateHours', () => {
 	expect(hours[24].timeOfTheDay).toBe('PM')
 })
 
-// const testCases = [
-// 	{ time: '9:00 AM', offsetStart: 9, expected: 0 },
-// 	{ time: '9:00 PM', offsetStart: 9, expected: 12 * 60 },
-// 	{ time: '10:00 AM', offsetStart: 9, expected: 60 },
-// 	{ time: '10:00 PM', offsetStart: 9, expected: 13 * 60 },
-// 	{ time: '12:00 AM', offsetStart: 9, expected: 3 * 60 },
-// 	{ time: '12:00 PM', offsetStart: 9, expected: 15 * 60 },
-// ]
+const timeToOffset = [
+	{ time: '9:00 AM', offset: [9, 0] },
+	{ time: '9:30 AM', offset: [9, 30] },
+	{ time: '10:30 AM', offset: [10, 90] },
+	{ time: '12:00 PM', offset: [12, 180] },
+	{ time: '12:30 PM', offset: [12, 210] },
+	{ time: '5:00 PM', offset: [5, 480] },
+	{ time: '9:00 PM', offset: [9, 720] },
+]
 
-// testCases.forEach((testCase) => {
-// 	test(`convertTimeToOffset: ${testCase.time}`, () => {
-// 		expect(convertTimeToOffset(testCase.time, testCase.offsetStart)).toBe(
-// 			testCase.expected
-// 		)
-// 	})
-// })
+test('convertTimeToOffset', () => {
+	timeToOffset.forEach(({ time, offset }) => {
+		expect(convertTimeToOffset(time)).toEqual(offset)
+	})
+})
 
 // const events = [
 // 	{ start: 0, end: 60, title: 'some new event' },
