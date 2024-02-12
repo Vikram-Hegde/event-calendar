@@ -40,15 +40,16 @@ export default function categorizeEvents(items: (EventProps | object)[]) {
 			addedToSubArray = true
 		}
 
-		for (let i = 0; i < subArray?.length; i++) {
-			if (subArray[i] && subArray[i + 1]) {
-				const currentItem = subArray[i] as EventProps
-				const nextItem = subArray[i + 1] as EventProps
-				if (nextItem.start >= currentItem.end) {
-					nextItem.index = currentItem.index
+		if (subArray?.length > 1)
+			for (let i = 0; i < subArray?.length; i++) {
+				if (subArray[i] && subArray[i + 1]) {
+					const currentItem = subArray[i] as EventProps
+					const nextItem = subArray[i + 1] as EventProps
+					if (nextItem.start >= currentItem.end) {
+						nextItem.index = currentItem.index
+					}
 				}
 			}
-		}
 
 		if (!addedToSubArray) {
 			const newSubArray = []
