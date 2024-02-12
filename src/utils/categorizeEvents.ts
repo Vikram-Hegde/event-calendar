@@ -40,6 +40,16 @@ export default function categorizeEvents(items: (EventProps | object)[]) {
 			addedToSubArray = true
 		}
 
+		for (let i = 0; i < subArray?.length; i++) {
+			if (subArray[i] && subArray[i + 1]) {
+				const currentItem = subArray[i] as EventProps
+				const nextItem = subArray[i + 1] as EventProps
+				if (nextItem.start >= currentItem.end) {
+					nextItem.index = currentItem.index
+				}
+			}
+		}
+
 		if (!addedToSubArray) {
 			const newSubArray = []
 			if ('start' in item) {
@@ -60,23 +70,21 @@ export default function categorizeEvents(items: (EventProps | object)[]) {
 function mergeOverlappingArrays(
 	dataset: (EventProps | object)[][]
 ): (EventProps | object)[][] {
-	const mergedDataset = [dataset[0]]
+	if (dataset.length <= 1) {
+		return dataset
+	}
+
+	const mergedDataset: (EventProps | object)[][] = [dataset[0]]
 
 	for (let i = 1; i < dataset.length; i++) {
 		const currentArray = dataset[i]
 		const previousArray = mergedDataset[mergedDataset.length - 1]
+		const currentStart = (currentArray[0] as EventProps).start
+		const previousEnd = (previousArray[previousArray.length - 1] as EventProps)
+			.end
 
-		if (
-			(currentArray[0] as EventProps).start <=
-			(previousArray[previousArray.length - 1] as EventProps).end
-		) {
+		if (currentStart <= previousEnd) {
 			const mergedArray = previousArray.concat(currentArray)
-			if ('end' in mergedArray[mergedArray.length - 1]) {
-				;(mergedArray[mergedArray.length - 1] as EventProps).end = Math.max(
-					(previousArray[previousArray.length - 1] as EventProps)?.end,
-					(currentArray[currentArray.length - 1] as EventProps)?.end
-				)
-			}
 			mergedDataset[mergedDataset.length - 1] = mergedArray
 		} else {
 			mergedDataset.push(currentArray)
