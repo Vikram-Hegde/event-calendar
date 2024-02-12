@@ -15,10 +15,8 @@ test('getDimensions', () => {
 
 	expect(getTop(event)).toBe('72px')
 	expect(getHeight(event)).toBe('58px')
-	expect(getLeft(170, 1, 1)).toBe(
-		`max(170px / 1 * 1, var(--event-min-width) * 1)`
-	)
-	expect(getWidth(170, 1)).toBe('max(170px / 1, var(--event-min-width))')
+	expect(getLeft(170, 1, 1)).toBe(`calc(170px / 1 * 1)`)
+	expect(getWidth(170, 1)).toBe('calc(170px / 1)')
 })
 
 test('generateHours', () => {

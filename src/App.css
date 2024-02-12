@@ -41,6 +41,10 @@ html {
 		justify-items: end;
 	}
 
+	.calendar__event > * {
+		min-width: 0;
+	}
+
 	.calendar__events-wrapper {
 		scrollbar-width: thin;
 	}
