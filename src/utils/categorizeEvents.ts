@@ -63,7 +63,7 @@ export default function categorizeEvents(items: (EventProps | object)[]) {
 
 	const mergedDataset = mergeOverlappingArrays(groupedItems)
 
-	console.log(groupedItems)
+	// console.log(groupedItems)
 
 	return mergedDataset
 }

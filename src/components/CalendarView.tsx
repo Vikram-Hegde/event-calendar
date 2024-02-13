@@ -14,7 +14,7 @@ export default memo(function CalendarView({
 	const sortedEvents = events.sort((a, b) => a.start - b.start)
 	const categorizedEvents = categorizeEvents(sortedEvents)
 
-	// console.log(categorizedEvents)
+	console.log(categorizedEvents)
 
 	const calendarEvents = useRef<HTMLDivElement>(null)
 	const [calendarEventsWidth, setCalendarEventsWidth] = useState<number>(0)
